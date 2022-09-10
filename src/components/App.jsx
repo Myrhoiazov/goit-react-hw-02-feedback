@@ -1,9 +1,13 @@
 import { Component } from 'react';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions.jsx';
 import Statistics from './Statistics/Statistics.jsx';
+import Container from './Container/Container.jsx';
 
-
-const options = [{name:"good", label: 'Good'}, {name:"neutral", label: 'Neutral'}, {name:"bad", label: 'Bad'}]
+const options = [
+  { name: 'good', label: 'Good' },
+  { name: 'neutral', label: 'Neutral' },
+  { name: 'bad', label: 'Bad' },
+];
 
 export class App extends Component {
   state = {
@@ -34,18 +38,11 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        <FeedbackOptions options={options} onLeaveFeedback={this.handleChangeFeedback} />
+      <Container>
+        <FeedbackOptions
+          options={options}
+          onLeaveFeedback={this.handleChangeFeedback}
+        />
         <Statistics
           good={good}
           neutral={neutral}
@@ -53,8 +50,7 @@ export class App extends Component {
           total={this.countTotalFeedback()}
           positivePercentage={this.countPositiveFeedbackPercentage()}
         />
-
-      </div>
+      </Container>
     );
   }
 }
