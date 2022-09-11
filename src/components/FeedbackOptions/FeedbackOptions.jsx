@@ -2,6 +2,7 @@ import { Component } from 'react';
 import style from './FeedbackOptions.module.css';
 import Section from '../Section/Section.jsx';
 import PropTypes from 'prop-types';
+const shortid = require('shortid')
 
 class FeedbackOptions extends Component {
   render() {
@@ -10,7 +11,7 @@ class FeedbackOptions extends Component {
     return (
       <Section title='Please leave feedback'>
         {options.map(option => (
-          <button
+          <button key={shortid.generate()}
             className={style.btn}
             type="button"
             name={option.name}
@@ -27,8 +28,8 @@ class FeedbackOptions extends Component {
 FeedbackOptions.propTypes ={
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      onLeaveFeedback: PropTypes.funk.isRequired,
+      name: PropTypes.string,
+      onLeaveFeedback: PropTypes.func,
     })
   ).isRequired,
 }
