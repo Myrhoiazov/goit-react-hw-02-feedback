@@ -1,7 +1,8 @@
 import style from './Statistics.module.css';
 import { Component } from 'react';
 import Section from '../Section/Section.jsx';
-import Notification from '../Notification/Notification.jsx'
+import Notification from '../Notification/Notification.jsx';
+import PropTypes from 'prop-types';
 
 class Statistics extends Component {
   render() {
@@ -10,7 +11,7 @@ class Statistics extends Component {
     return (
       <Section title="Statistics">
         {total === 0 ? (
-          <Notification title='There is no feedback...'/>
+          <Notification title="There is no feedback..." />
         ) : (
           <ul className={style.list}>
             <li className={style.item}>Good: {good}</li>
@@ -26,5 +27,13 @@ class Statistics extends Component {
     );
   }
 }
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};
 
 export default Statistics;
